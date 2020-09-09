@@ -18,29 +18,39 @@ class Application extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      username:"",
-      password:"",
-      logged:false,
+      credential : {
+        'username': "",
+        'password': "",
+        'logged': false,
+	  },
       remember:false,
     }
+	
+	
   }
 
   changeUsername = (val) => {
+	let newCredential =  { ...this.state.credential};
+	newCredential.username = val;
     this.setState({
-      username: val
-    })
+      credential: newCredential,
+    });
   }
 
   changePassword = (val) => {
+    let newCredential =  { ...this.state.credential};
+	newCredential.password = val;
     this.setState({
-      password: val
-    })
+      credential: newCredential,
+    });
   }
 
   changeLogged = (val) => {
+    let newCredential =  { ...this.state.credential};
+	newCredential.logged = val;
     this.setState({
-      logged: val
-    })
+      credential: newCredential,
+    });
   }
 
   changeRemember = (val) => {
@@ -56,11 +66,7 @@ class Application extends React.Component {
         'changeRemember': this.changeRemember,
   };
 
-  /*credential = {
-        'username': this.state.username,
-        'password': this.state.password,
-        'logged': this.state.logged,
-  };*/
+ 
 
 
   render() {
@@ -69,7 +75,7 @@ class Application extends React.Component {
         <BrowserRouter>
             <ButtonsBar username = {this.state.username} password = {this.state.password} loggedin = {this.state.loggedin} />
               <Switch>
-               <Route path="/login">  <LoginPage /> </Route>
+               <Route path="/login">  <LoginPage credential={this.state.credential}/> </Route>
                <Route path="/register"> <RegisterPage />  </Route>
                <Route path="/">  <Canvas /> <Sidebar /> </Route>
               </Switch>
