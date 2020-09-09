@@ -71,7 +71,7 @@ class Application extends React.Component {
               <Switch>
                <Route path="/login">  <LoginPage /> </Route>
                <Route path="/register"> <RegisterPage />  </Route>
-               <Route path="/">  <Canvas /> </Route>
+               <Route path="/">  <Canvas /> <Sidebar /> </Route>
               </Switch>
         </BrowserRouter>
       </div>
