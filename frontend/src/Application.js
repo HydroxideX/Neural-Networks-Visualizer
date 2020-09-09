@@ -56,11 +56,11 @@ class Application extends React.Component {
         'changeRemember': this.changeRemember,
   };
 
-  credential = {
-        'username': this.state.username;
-        'password': this.state.password;
-        'logged': this.state.logged;
-  };
+  /*credential = {
+        'username': this.state.username,
+        'password': this.state.password,
+        'logged': this.state.logged,
+  };*/
 
 
   render() {
