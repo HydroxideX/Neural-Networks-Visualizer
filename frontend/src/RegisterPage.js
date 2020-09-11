@@ -9,29 +9,47 @@ class RegisterPage extends React.Component {
 
   render() {
     return (
-      <div class="logincontainer" >
-        <div class="labelInput">
-          <label > E-mail</label>
-          <input name="email" class="emailInput"/>
+
+      <div class="fullContainer">
+        <div>
+          <div class="child">
+            <div>
+                <label class="labelElement"> Email</label>
+            </div>
+            <div>
+                <label class="labelElement"> Username</label>
+            </div>
+            <div>
+                <label class="labelElement"> Password </label>
+            </div>
+            <div>
+                <label class="labelElement"> Password </label>
+            </div>
+          </div>
+          <div  >
+            <div>
+              <input name="email" class="inputElement"/>
+            </div>
+            <div>
+              <input name="username" class="inputElement"/>
+            </div>
+            <div>
+              <input type="password" name="password1" class="inputElement"/>
+            </div>
+            <div>
+              <input type="password" name="password2" class="inputElement"/>
+            </div>
+          </div>
         </div>
-        <div class="labelInput">
-          <label> Username</label>
-          <input name="username" class="usernameInput"/>
-        </div>
-        <div class="labelInput">
-          <label> Password </label>
-          <input type="password" name="password1" class="passwordInput" />
-        </div>
-        <div class="labelInput">
-          <label> Password </label>
-          <input type="password" name="password2" class="passwordInput" />
-        </div>
-        <div class = "labelInput">
-          <button class ="ContinueButton">
+
+        <div class ="registerButton">
+          <button class = "ContinueButton">
             Register
           </button>
         </div>
       </div>
+
+
     );
   }
 }

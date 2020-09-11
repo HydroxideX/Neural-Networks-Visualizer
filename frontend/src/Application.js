@@ -17,7 +17,7 @@ import {
 class Application extends React.Component {
   constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       credential : {
         'username': "",
         'password': "",
@@ -25,8 +25,6 @@ class Application extends React.Component {
 	  },
       remember:false,
     }
-	
-	
   }
 
   changeUsername = (val) => {
