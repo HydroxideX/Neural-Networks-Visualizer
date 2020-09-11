@@ -9,21 +9,34 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <div class="logincontainer" >
-        <div class="labelInput">
-          <label> Username</label>
-          <input name="username" class="usernameInput"/>
+      <div class="fullContainer">
+        <div>
+          <div class="child">
+            <div>
+                <label class="labelElement"> Username</label>
+            </div>
+            <div>
+                <label class="labelElement"> Password </label>
+            </div>
+            <div>
+                <label class="labelElement"> Remember me </label>
+            </div>
+          </div>
+          <div  >
+            <div>
+              <input name="username" class="inputElement"/>
+            </div>
+            <div>
+              <input type="password" name="password" class="inputElement"/>
+            </div>
+            <div>
+              <input type="checkbox" name="remember-me" class="rememberme"/>
+            </div>
+          </div>
         </div>
-        <div class="labelInput">
-          <label> Password </label>
-          <input type="password" name="password" class="passwordInput" />
-        </div>
-        <div class="labelInput">
-          <label> Remember me </label>
-          <input type="checkbox" name="remember-me" class ="rememberme" />
-        </div>
-        <div class = "labelInput">
-          <button class ="ContinueButton">
+
+        <div class ="belowButton">
+          <button class = "ContinueButton">
             Log In
           </button>
         </div>
