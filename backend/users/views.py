@@ -20,19 +20,19 @@ def get_user_data(request):
 def register_view(request):
     oldLen = len(User.objects.all())
     serializer = UserSerializer(data=request.data)
-    newLen = len(User.objects.all())
     if serializer.is_valid():
         serializer.save()
+    newLen = len(User.objects.all())
     if newLen == oldLen:
-        return Response(False)
+        return Response("false")
     else:
-        return Response(True)
+        return Response("true")
 
 
 def get_user(request):
-    username = request.data['email']
+    email = request.data['email']
     password = request.data['password']
-    user = User.objects.filter(username=username, password=password)
+    user = User.objects.filter(email=email, password=password)
     return user
 
 
@@ -40,12 +40,12 @@ def get_user(request):
 def login_view(request):
     user = get_user(request)
     if len(user) != 0:
-        curr = user.get(pk=1)
+        curr = user.first()
         curr.is_active = True
         curr.save()
-        return Response(True)
+        return Response(user.first().username)
     else:
-        return Response(False)
+        return Response("false")
 
 
 @api_view(['POST'])

@@ -9,7 +9,7 @@ body {
     overflow:hidden;
 }
 
-.panel {    
+.panel {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,8 +72,8 @@ body {
 }
 
 .content {
-    flex-grow: 2;  
-    background: white; 
+    flex-grow: 2;
+    background: white;
 }
 
 .customHandle {

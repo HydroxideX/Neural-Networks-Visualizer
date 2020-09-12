@@ -9,7 +9,7 @@ class HomeButton extends React.Component {
 
   render() {
     return (
-      <button style = {{fontSize: "80%" }}>
+      <button class="btn btn-primary">
         Home
       </button>
     );

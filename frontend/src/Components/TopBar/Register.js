@@ -9,8 +9,8 @@ class Register extends React.Component {
 
   render() {
     return (
-      <button style = {{fontSize: "80%" }}>
-        Register
+      <button class="btn btn-primary">
+        Sign Up
       </button>
     );
   }

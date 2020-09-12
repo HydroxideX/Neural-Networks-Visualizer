@@ -9,9 +9,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <button style = {{fontSize: "80%" }}>
-        Login
-      </button>
+      <button type="button" class="btn btn-primary">Login</button>
     );
   }
 }
