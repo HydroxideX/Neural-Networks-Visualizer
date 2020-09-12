@@ -26,6 +26,10 @@ class Application extends React.Component {
 	  },
       remember:false,
     }
+    this.changeUsername = this.changeUsername.bind(this);
+    this.changeEmail = this.changeEmail.bind(this);
+    this.changePassword = this.changePassword.bind(this);
+    this.changeLogged = this.changeLogged.bind(this);
   }
 
   componentDidMount = () =>{
