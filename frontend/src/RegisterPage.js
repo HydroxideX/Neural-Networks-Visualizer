@@ -91,7 +91,7 @@ class RegisterPage extends React.Component {
   registerUser = () => {
 
     if(this.state.password1 !== this.state.password2) {
-      this.setState({error:"Passwords doesnt match!"});
+      this.setState({error:"Passwords dont match!"});
       return;
     }
 

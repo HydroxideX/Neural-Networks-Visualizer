@@ -45,7 +45,6 @@ def login_view(request):
         curr.save()
         return Response(user.first().username)
     else:
-        
         return Response("false")
 
 
