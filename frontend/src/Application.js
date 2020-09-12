@@ -32,7 +32,7 @@ class Application extends React.Component {
     this.changeLogged = this.changeLogged.bind(this);
   }
 
-  componentDidMount = () =>{
+  componentDidMount(){
     console.log(localStorage.getItem('username'));
     console.log(localStorage.getItem('email'));
     console.log(localStorage.getItem('password'));
@@ -41,13 +41,20 @@ class Application extends React.Component {
     this.setState({
       remember:false,
     })
-    this.changeUsername(localStorage.getItem('username'));
-    this.changeEmail(localStorage.getItem('email'));
-    this.changePassword(localStorage.getItem('password'));
-    this.changeLogged(localStorage.getItem('logged'));
+    let newCredential =  { ...this.state.credential};
+  	newCredential.email = localStorage.getItem('email');
+    newCredential.username = localStorage.getItem('username');
+    newCredential.password = localStorage.getItem('password');
+    newCredential.logged = localStorage.getItem('logged');
+    this.setState({
+      credential: newCredential,
+    });
     this.setState({
       remember: localStorage.getItem('remember'),
     })
+    console.log("\n");
+    console.log(this.state.credential.username);
+    console.log(this.state.credential.email);
   }
 
   storeData = ()=> {
@@ -60,12 +67,23 @@ class Application extends React.Component {
      }
   }
 
+  clearData = () => {
+    if (typeof(Storage) !== "undefined") {
+       localStorage.setItem('username','');
+       localStorage.setItem('email','');
+       localStorage.setItem('password','');
+       localStorage.setItem('logged',false);
+       localStorage.setItem('remember',false);
+    }
+  }
+
   changeEmail = (val) => {
 	let newCredential =  { ...this.state.credential};
 	newCredential.email = val;
     this.setState({
       credential: newCredential,
     });
+    console.log(this.state.credential.email);
   }
 
   changeUsername = (val) => {
@@ -74,9 +92,11 @@ class Application extends React.Component {
     this.setState({
       credential: newCredential,
     });
-
-    if(this.state.remember !== false){
-      this.storeData()
+    console.log(this.state.credential.username);
+    if(this.state.remember === true){
+      this.storeData();
+    } else {
+      this.clearData();
     }
   }
 

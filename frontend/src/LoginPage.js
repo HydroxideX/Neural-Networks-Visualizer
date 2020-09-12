@@ -37,11 +37,11 @@ handleChangeRemember(event) {
 getOutputOrRedirect = () => {
   if(this.state.returnValue === "false"){
       this.setState({
-        error:"Username or Password incorrect"
+        error:"Incorrect Data Entered"
       })
   } else {
       this.setState({
-        error:"Logged in successfully!"
+        error:"Log in Complete!"
       });
       this.props.loggingIn.changeLogged(true);
       this.props.loggingIn.changeUsername(this.state.returnValue);
@@ -107,8 +107,9 @@ signIn = () => {
       					<div class="form-group">
       						<button class="btn float-right login_btn" onClick={this.signIn}> Sign in </button>
       					</div>
+                <label> {this.state.error}</label>
       			</div>
-            <label> {this.state.error}</label>
+
       		</div>
       	</div>
       </div>
