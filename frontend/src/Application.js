@@ -137,7 +137,7 @@ class Application extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <BrowserRouter>
             <ButtonsBar username = {this.state.username} password = {this.state.password} loggedin = {this.state.loggedin} />
               <Switch>
@@ -146,7 +146,7 @@ class Application extends React.Component {
                <Route path="/">  <Canvas /> <Sidebar /> </Route>
               </Switch>
         </BrowserRouter>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -19,7 +19,8 @@ class ButtonsBar extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
+
         <nav class="navbar fixed-top navbar-expand-md custom-navbar navbar-dark">
           <Link to="/">  <HomeButton /> </Link>
           <button class="navbar-toggler navbar-toggler-right custom-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -37,7 +38,7 @@ class ButtonsBar extends React.Component {
             </ul>
           </div>
         </nav>
-      </div>
+      </React.Fragment>
     );
   }
 }
