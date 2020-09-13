@@ -1,16 +1,7 @@
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import loader
-from django.urls import reverse
-from django.views import generic
-from django.shortcuts import render
-from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer
-from django.contrib.auth import authenticate, login, logout
 from .models import User
-from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 import random
 
@@ -25,7 +16,7 @@ def code_generator():
 
 
 @api_view(['POST'])
-def verify_email(request):
+def verify_email(request, code):
     oldLen = len(User.objects.all())
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
@@ -39,18 +30,22 @@ def verify_email(request):
 
 @api_view(['POST'])
 def register_view(request):
-    serializer = UserSerializer(data=request.data)
+    oldLen = len(User.objects.all())
+    code = code_generator()
+    serializer = UserSerializer(data=request.data, code=code, is_verified=False)
     if serializer.is_valid():
+        serializer.save()
+    newLen = len(User.objects.all())
+    if newLen == oldLen:
+        return Response("false")
+    else:
         created_object = request.data
-        code = code_generator()
         email = EmailMessage('Neural Network Visualizer Verification Email',
                              'Thank you for signing up ' + created_object[
-                                 'username'] + ',\n\n please enter this code ' + str(code), to=[created_object['email']])
+                                 'username'] + ',\n\n please use this link to verify your email address \n' +
+                              str(code))
         email.send()
-        print(code)
-        return Response(str(code))
-    else:
-        return Response("false")
+        return Response("true")
 
 
 def get_user(request):

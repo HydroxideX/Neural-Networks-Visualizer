@@ -49,7 +49,6 @@ class LoginPage extends React.Component {
       this.props.loggingIn.changeLogged(true);
       this.props.loggingIn.changeUsername(this.state.returnValue);
     }
-    console.log("output finished");
   }
 
 

@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import ButtonsBar from './Components/TopBar/ButtonsBar.js'
-import Canvas from './Components/ChartsCanvas/Canvas.js'
-import Sidebar from './Components/ChartsSidebar/Sidebar.js'
+import Sidebar from './Components/MainArea/Sidebar.js'
 import LoginPage from './LoginPage.js'
 import RegisterPage from './RegisterPage.js'
 
@@ -34,11 +33,6 @@ class Application extends React.Component {
   }
 
   componentDidMount(){
-    console.log(localStorage.getItem('username'));
-    console.log(localStorage.getItem('email'));
-    console.log(localStorage.getItem('password'));
-    console.log(localStorage.getItem('logged'));
-    console.log(localStorage.getItem('remember'));
     this.setState({
       remember:false,
     })
@@ -53,9 +47,6 @@ class Application extends React.Component {
     this.setState({
       remember: localStorage.getItem('remember'),
     })
-    console.log("\n");
-    console.log(this.state.credential.username);
-    console.log(this.state.credential.email);
   }
 
   storeData = ()=> {
@@ -84,7 +75,6 @@ class Application extends React.Component {
     this.setState({
       credential: newCredential,
     });
-    console.log(this.state.credential.email);
   }
 
   changeUsername = (val) => {
@@ -93,7 +83,6 @@ class Application extends React.Component {
     this.setState({
       credential: newCredential,
     });
-    console.log(this.state.credential.username);
     if(this.state.remember === true){
       this.storeData();
     } else {
@@ -145,7 +134,7 @@ class Application extends React.Component {
                <Route path="/login">  <LoginPage loggingIn = {this.loggingIn}/> </Route>
                <Route path="/register"> <RegisterPage />  </Route>
                <Route path="/verify" render={(props) => <VerifyPage {...props}/>}/>
-               <Route path="/">  <Canvas /> <Sidebar /> </Route>
+               <Route path="/"> <Sidebar /> </Route>
               </Switch>
         </BrowserRouter>
       </React.Fragment>

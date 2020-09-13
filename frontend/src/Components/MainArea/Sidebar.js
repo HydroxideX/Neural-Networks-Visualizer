@@ -7,6 +7,7 @@ import "brace/mode/python";
 import "brace/theme/solarized_dark";
 import 'brace/snippets/c_cpp';
 import 'brace/ext/language_tools';
+import Canvas from './Canvas'
 let cx = classNames.bind(style);
 class Sidebar extends React.Component {
 
@@ -22,7 +23,7 @@ class Sidebar extends React.Component {
             <div className={cx('sidebar', 'withMargin', 'panel')}>
             </div>
           </ResizePanel>
-          <div className={cx('content', 'panel')}>content</div>
+          <div className={cx('content', 'panel')}> <Canvas> </Canvas> </div>
           <ResizePanel direction="w" style={{ width: '20%' }} handleClass={style.customHandle} borderClass={style.customResizeBorder}>
             <AceEditor
              ref="aceEditor"

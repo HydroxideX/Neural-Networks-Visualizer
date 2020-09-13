@@ -56,7 +56,6 @@ class RegisterPage extends React.Component {
         redirect: "verify"
       });
     }
-    console.log("output finished");
   }
 
 
@@ -72,18 +71,12 @@ class RegisterPage extends React.Component {
         "password": this.state.password1,
         "is_active": false,
       })
-    },
-
-      console.log("data sent")
-    ).then(response => response.json(),
-
-      console.log("response came")
-    ).then(booksList =>{
-      this.setState({ books: booksList },
-        console.log("setState completed", this.state,booksList)
-      )}
+    }).then(response => response.json()
+    ).then(data =>{
+      this.setState({ returnValue: data }
+    )}
     )
-    //output();
+    output();
   }
 
 
@@ -168,8 +161,6 @@ class RegisterPage extends React.Component {
             </div>
           </div>
         </div>
-
-
       );
     }
   }
