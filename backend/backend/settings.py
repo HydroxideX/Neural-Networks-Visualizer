@@ -131,4 +131,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 CORS_ORIGIN_ALLOW_ALL = True
 
-
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'yfalshaarawi@gmail.com'
+EMAIL_HOST_PASSWORD = 'yfcool99'
+EMAIL_PORT = 587

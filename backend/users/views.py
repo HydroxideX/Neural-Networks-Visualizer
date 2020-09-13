@@ -10,14 +10,22 @@ from rest_framework.response import Response
 from .serializers import UserSerializer
 from django.contrib.auth import authenticate, login, logout
 from .models import User
+from django.core.mail import send_mail
+from django.core.mail import EmailMessage
+import random
 
 
 def get_user_data(request):
     return None
 
 
+def code_generator():
+    n = random.randint(1111111, 9999999)
+    return n
+
+
 @api_view(['POST'])
-def register_view(request):
+def verify_email(request):
     oldLen = len(User.objects.all())
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
@@ -27,6 +35,22 @@ def register_view(request):
         return Response("false")
     else:
         return Response("true")
+
+
+@api_view(['POST'])
+def register_view(request):
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        created_object = request.data
+        code = code_generator()
+        email = EmailMessage('Neural Network Visualizer Verification Email',
+                             'Thank you for signing up ' + created_object[
+                                 'username'] + ',\n\n please enter this code ' + str(code), to=[created_object['email']])
+        email.send()
+        print(code)
+        return Response(str(code))
+    else:
+        return Response("false")
 
 
 def get_user(request):

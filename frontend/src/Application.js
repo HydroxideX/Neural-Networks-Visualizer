@@ -13,6 +13,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import VerifyPage from './VerifyPage';
 
 class Application extends React.Component {
   constructor(props) {
@@ -143,6 +144,7 @@ class Application extends React.Component {
               <Switch>
                <Route path="/login">  <LoginPage loggingIn = {this.loggingIn}/> </Route>
                <Route path="/register"> <RegisterPage />  </Route>
+               <Route path="/verify" render={(props) => <VerifyPage {...props}/>}/>
                <Route path="/">  <Canvas /> <Sidebar /> </Route>
               </Switch>
         </BrowserRouter>
