@@ -7,7 +7,10 @@
 /backend/.idea/
 # testing
 /frontend/coverage
-
+/backend/users/__pycache__
+/backend/users/migrations/__pycache__
+/backend/backend/__pycache__
+/backend/charts/__pycache__
 # production
 /frontend/build
 /frontend/node_modules
