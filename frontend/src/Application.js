@@ -133,7 +133,7 @@ class Application extends React.Component {
               <Switch>
                <Route path="/login">  <LoginPage loggingIn = {this.loggingIn}/> </Route>
                <Route path="/register"> <RegisterPage />  </Route>
-               <Route path="/verify" render={(props) => <VerifyPage {...props}/>}/>
+               <Route path="/verify" > <VerifyPage /> </Route>
                <Route path="/"> <Sidebar /> </Route>
               </Switch>
         </BrowserRouter>

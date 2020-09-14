@@ -70,6 +70,8 @@ class RegisterPage extends React.Component {
         "username": this.state.username,
         "password": this.state.password1,
         "is_active": false,
+        "code":0,
+        "is_verified":false
       })
     }).then(response => response.json()
     ).then(data =>{
@@ -105,12 +107,7 @@ class RegisterPage extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect
-      to={{
-      pathname: this.state.redirect,
-      state: { returnValue: this.state.returnValue }
-    }}
-  />
+      return <Redirect to={this.state.redirect} />
     }
     else {
       return (

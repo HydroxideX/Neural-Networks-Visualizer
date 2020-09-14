@@ -10,8 +10,6 @@ class VerifyPage extends React.Component {
 
         this.state = {
             email: "",
-            password: "",
-            rememberme: false,
             enteredCode:"",
             returnValue: "",
             error: "",
@@ -23,17 +21,44 @@ class VerifyPage extends React.Component {
         this.setState({ enteredCode: event.target.value });
       }
     
-    signIn = () => {
-        if(this.state.enteredCode==this.props.returnValue)
-        {
-            console.log('haaaaaaaaa');
+      signin = () => {
+
+        if (this.state.enteredCode === "") {
+          this.setState({ error: "Enter Code!" });
+          return;
         }
-        else{
-            this.setState({
-                error:"Incorrect Code"
-            })
+        this.sendData(this.getOutputOrRedirect);
+      }
+
+      sendData = async (output) => {
+        await fetch('http://127.0.0.1:8000/users/verify_email/', {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify({
+            "code": this.state.enteredCode,
+          })
+        }).then(response => response.json()
+        ).then(data =>{
+          this.setState({ returnValue: data }
+        )}
+        )
+        output();
+      }
+
+      getOutputOrRedirect = () => {
+        if (this.state.returnValue === "false") {
+          this.setState({
+            error: "Code is incorrect!"
+          })
+        } else {
+          this.setState({
+            error: "Log in Complete!",
+            redirect: "/"
+          });
         }
-    }
+      }
 
     render() {
         if (this.state.redirect) {
@@ -56,7 +81,7 @@ class VerifyPage extends React.Component {
 
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn float-right login_btn" onClick={this.verify}> Verify </button>
+                                    <button class="btn float-right login_btn" onClick={this.signin}> Verify </button>
                                 </div>
                                 <label> {this.state.error}</label>
                             </div>
