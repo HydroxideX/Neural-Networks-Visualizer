@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-
+import sha512 from 'crypto-js/sha512'
 
 class LoginPage extends React.Component {
 
@@ -25,7 +25,7 @@ class LoginPage extends React.Component {
   }
 
   handleChangePassword(event) {
-    this.setState({ password: event.target.value });
+    this.setState({ password: sha512(event.target.value).toString() });
     this.props.loggingIn.changePassword(event.target.value);
   }
 

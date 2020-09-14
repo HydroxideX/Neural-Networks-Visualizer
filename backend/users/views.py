@@ -33,7 +33,7 @@ def register_view(request):
     oldLen = len(User.objects.all())
     code = code_generator()
     serializer = UserSerializer(data=request.data, code=code, is_verified=False)
-    if serializer.is_valid():
+    if serializer.is_valid():   
         serializer.save()
     newLen = len(User.objects.all())
     if newLen == oldLen:
