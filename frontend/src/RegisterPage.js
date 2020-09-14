@@ -6,7 +6,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-
+import sha512 from 'crypto-js/sha512'
 class RegisterPage extends React.Component {
   constructor(props) {
     super(props);
@@ -39,10 +39,12 @@ class RegisterPage extends React.Component {
     this.setState({ username: event.target.value });
   }
   handleChangePassword1(event) {
-    this.setState({ password1: event.target.value });
+    let pass = sha512(event.target.value);
+    this.setState({ password1: pass.toString() });
   }
   handleChangePassword2(event) {
-    this.setState({ password2: event.target.value });
+    let pass = sha512(event.target.value);
+    this.setState({ password2: pass.toString()});
   }
 
   getOutputOrRedirect = () => {

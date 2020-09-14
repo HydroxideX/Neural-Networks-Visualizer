@@ -45,10 +45,15 @@ def verify_email(request):
 def register_view(request):
     oldLen = len(User.objects.all())
     code = code_generator()
+<<<<<<< HEAD
     request.data['code'] = str(code)
     serializer = UserSerializer(data=request.data)
     # print(serializer)
     if serializer.is_valid():
+=======
+    serializer = UserSerializer(data=request.data, code=code, is_verified=False)
+    if serializer.is_valid():   
+>>>>>>> 6870575bd03fe9d38e77040ee2f5b31725d2f8c2
         serializer.save()
     newLen = len(User.objects.all())
     if newLen == oldLen:

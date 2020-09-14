@@ -5,7 +5,7 @@ import ButtonsBar from './Components/TopBar/ButtonsBar.js'
 import Sidebar from './Components/MainArea/Sidebar.js'
 import LoginPage from './LoginPage.js'
 import RegisterPage from './RegisterPage.js'
-
+import sha512 from 'crypto-js/sha512'
 import {
   BrowserRouter,
   Switch,
@@ -94,7 +94,7 @@ class Application extends React.Component {
 
   changePassword = (val) => {
     let newCredential =  { ...this.state.credential};
-	  newCredential.password = val;
+	  newCredential.password = sha512(val).toString();
     this.setState({
       credential: newCredential,
     });
