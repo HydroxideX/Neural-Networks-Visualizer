@@ -47,7 +47,7 @@ def register_view(request):
     code = code_generator()
     request.data['code'] = str(code)
     serializer = UserSerializer(data=request.data)
-    # print(serializer)
+    print(serializer)
     if serializer.is_valid():
         serializer.save()
     newLen = len(User.objects.all())
