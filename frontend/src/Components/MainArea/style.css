@@ -102,8 +102,9 @@ body {
     align-content: center ;
     justify-content: center;
     overflow: visible;
+    padding: 0%;
 
 }
-.side-bar-buttons{
-
+.canvas{
+    width: 100vh;
 }
