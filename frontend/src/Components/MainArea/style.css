@@ -1,6 +1,7 @@
 body {
     margin: 0px;
 }
+
 .container {
     margin-top: 4%;
     margin-bottom: 0%;
@@ -77,6 +78,7 @@ body {
     background: white;
 }
 
+
 .customHandle {
     cursor: ew-resize;
     width: 10px;
@@ -85,7 +87,6 @@ body {
     background: lightblue;
     border: 2px solid gray;
     border-radius: 2px;
-    text-align: center;
     z-index: 99999;
     overflow: hidden;
     display: flex;
@@ -98,13 +99,11 @@ body {
     background: gray;
     display: flex;
     z-index: 99999;
-    align-items: center ;
-    align-content: center ;
-    justify-content: center;
     overflow: visible;
     padding: 0%;
 
 }
+
 .canvas{
     width: 100vh;
 }

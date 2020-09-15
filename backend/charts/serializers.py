@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import User
+from .models import Chart
 from django.contrib.auth.hashers import make_password
 
 
-class UserSerializer(serializers.ModelSerializer):
+class ChartSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = Chart
         fields = '__all__'

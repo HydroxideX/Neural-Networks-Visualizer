@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 
 class User(models.Model):
@@ -6,6 +7,7 @@ class User(models.Model):
     email = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=150)
     is_active = models.BooleanField(default=False)
+    charts = ArrayField(base_field=models.IntegerField(default=list))
     is_verified = models.BooleanField(default=False)
     code = models.CharField(max_length=50)
 

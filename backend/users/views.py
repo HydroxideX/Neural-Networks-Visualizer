@@ -8,11 +8,11 @@ from django.core.mail import EmailMessage
 import random
 
 
-def get_user_data(request):
+def get_user_charts(request):
     return None
 
 
-def code_isnot_uniqe(result_str):
+def code_is_not_unique(result_str):
     user = User.objects.filter(code=result_str)
     if len(user) == 0:
         return False
@@ -22,7 +22,7 @@ def code_isnot_uniqe(result_str):
 def code_generator():
     letters = string.ascii_lowercase
     result_str = ''.join(random.choice(letters) for i in range(15))
-    while code_isnot_uniqe(result_str):
+    while code_is_not_unique(result_str):
         letters = string.ascii_lowercase
         result_str = ''.join(random.choice(letters) for i in range(15))
     return result_str
@@ -43,15 +43,15 @@ def verify_email(request):
 
 @api_view(['POST'])
 def register_view(request):
-    oldLen = len(User.objects.all())
+    old_len = len(User.objects.all())
     code = code_generator()
     request.data['code'] = str(code)
     serializer = UserSerializer(data=request.data)
     print(serializer)
     if serializer.is_valid():
         serializer.save()
-    newLen = len(User.objects.all())
-    if newLen == oldLen:
+    new_len = len(User.objects.all())
+    if new_len == old_len:
         return Response("false")
     else:
         print("here")

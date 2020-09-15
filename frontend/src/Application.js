@@ -5,6 +5,7 @@ import ButtonsBar from './Components/TopBar/ButtonsBar.js'
 import Sidebar from './Components/MainArea/Sidebar.js'
 import LoginPage from './LoginPage.js'
 import RegisterPage from './RegisterPage.js'
+import UserCharts from './Components/UserData/UserCharts.js'
 import sha512 from 'crypto-js/sha512'
 import {
   BrowserRouter,
@@ -135,6 +136,7 @@ class Application extends React.Component {
                <Route path="/register"> <RegisterPage />  </Route>
                <Route path="/verify" > <VerifyPage /> </Route>
                <Route path="/"> <Sidebar /> </Route>
+               <Route path="/myCharts"> <UserCharts credential={this.state.credential}/> </Route>
               </Switch>
         </BrowserRouter>
       </React.Fragment>

@@ -19,12 +19,12 @@ class Sidebar extends React.Component {
     return (
       <div className={cx('container')}>
         <div className={cx('body')}>
-          <ResizePanel direction="e" style={{ flexGrow: '1' }} >
-            <div className={cx('sidebar', 'withMargin', 'panel')}>
+
+            <div>
             </div>
-          </ResizePanel>
           <div className={cx('content', 'panel')}> <Canvas> </Canvas> </div>
-          <ResizePanel direction="w" style={{ width: '20%' }} handleClass={style.customHandle} borderClass={style.customResizeBorder}>
+
+          <ResizePanel direction="w" >
             <AceEditor
              ref="aceEditor"
              width="100%"
