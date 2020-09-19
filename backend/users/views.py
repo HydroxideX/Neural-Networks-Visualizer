@@ -42,21 +42,18 @@ def register_view(request):
     code = code_generator()
     request.data['code'] = str(code)
     serializer = UserSerializer(data=request.data)
-    print(serializer)
     if serializer.is_valid():
         serializer.save()
     new_len = len(User.objects.all())
     if new_len == old_len:
         return Response("false")
     else:
-        print("here")
         created_object = request.data
         email = EmailMessage('Neural Network Visualizer Verification Email',
                              'Thank you for signing up ' + created_object[
                                  'username'] + ',\n\n please use this link to verify your email address \n' +
                              str(code), to=[created_object['email']])
         email.send()
-        print("here")
         return Response("true")
 
 
