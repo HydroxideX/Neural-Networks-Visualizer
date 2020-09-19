@@ -11,7 +11,6 @@ let cx = classNames.bind(style);
 
 function Canvas(props) {
 
-  const [images, setImages] = useState([]);
   const [selectedId, selectShape] = useState(null);
   const [shapes, setShapes] = useState([]);
   const [, updateState] = React.useState();
@@ -23,12 +22,13 @@ function Canvas(props) {
   const userClicked = (event) => {
       let x = event.currentTarget.pointerPos.x;
       let y = event.currentTarget.pointerPos.y;
+      let images = props.images;
       images.push({
         imageUrl: props.imgSrc,
         x : x,
         y : y,
       })
-      setImages(images);
+      props.setImages(images);
       console.log(images);
       forceUpdate();
   }
@@ -41,7 +41,7 @@ function Canvas(props) {
         onClick={userClicked}
       >
         <Layer>
-          {images.map((image, i) => {
+          {props.images.map((image, i) => {
           return (<Image
                     key = {i}
                     imageUrl={image.imageUrl}
