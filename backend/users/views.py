@@ -1,15 +1,10 @@
 import string
-
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer
 from .models import User
 from django.core.mail import EmailMessage
 import random
-
-
-def get_user_charts(request):
-    return None
 
 
 def code_is_not_unique(result_str):
@@ -88,7 +83,7 @@ def login_view(request):
 def logout_view(request):
     user = get_user(request)
     if len(user) != 0:
-        curr = user.get(pk=1)
+        curr =  user.first()
         curr.is_active = False
         curr.save()
         return Response(True)
@@ -97,5 +92,27 @@ def logout_view(request):
 
 
 @api_view(['GET'])
-def index(request):
-    return None
+def get_user_charts_view(request):
+    user = get_user(request)
+    curr = user.first()
+    return curr.drawings
+
+
+@api_view(['GET'])
+def get_chart_view(request):
+    user = get_user(request)
+    curr = user.first()
+    return curr.drawings[request.data["chart_name"]]
+
+
+@api_view(['POST'])
+def save_chart_view(request):
+    user = get_user(request)
+    if len(user) != 0:
+        curr = user.first()
+        chart = request.data["chart"]
+        curr.drawings[chart["name"]] = chart["drawing"]
+        curr.save()
+        return Response(True)
+    else:
+        return Response(False)

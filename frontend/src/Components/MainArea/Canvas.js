@@ -9,7 +9,7 @@ let cx = classNames.bind(style);
 
 
 
-function Canvas() {
+function Canvas(props) {
 
   const [images, setImages] = useState([]);
   const [selectedId, selectShape] = useState(null);
@@ -24,7 +24,7 @@ function Canvas() {
       let x = event.currentTarget.pointerPos.x;
       let y = event.currentTarget.pointerPos.y;
       images.push({
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Noto_Emoji_KitKat_263a.svg/200px-Noto_Emoji_KitKat_263a.svg.png",
+        imageUrl: props.imgSrc,
         x : x,
         y : y,
       })
