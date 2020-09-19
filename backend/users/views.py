@@ -38,6 +38,7 @@ def verify_email(request):
 
 @api_view(['POST'])
 def register_view(request):
+    change_email_to_lowercase(request)
     old_len = len(User.objects.all())
     code = code_generator()
     request.data['code'] = str(code)
@@ -60,12 +61,20 @@ def register_view(request):
 def get_user(request):
     email = request.data['email']
     password = request.data['password']
-    user = User.objects.filter(email=email, password=password)
+    newEmail = email.lower()
+    user = User.objects.filter(email=newEmail, password=password)
     return user
+
+
+def change_email_to_lowercase(request):
+    email = request.data["email"]
+    new_email = email.lower()
+    request.data["email"] = new_email
 
 
 @api_view(['POST'])
 def login_view(request):
+    change_email_to_lowercase(request)
     user = get_user(request)
     if len(user) != 0:
         curr = user.first()
@@ -111,5 +120,4 @@ def save_chart_view(request):
         curr.drawings[chart["name"]] = chart["drawing"]
         curr.save()
         return Response(True)
-    else:
-        return Response(False)
+    return Response(False)

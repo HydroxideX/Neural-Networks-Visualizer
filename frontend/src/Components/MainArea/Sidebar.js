@@ -22,8 +22,9 @@ class Sidebar extends React.Component {
       ],
       images :[
       ],
-
+      chartHasName: true,
       code : '',
+      localChart: '',
     };
   }
 
@@ -76,6 +77,10 @@ class Sidebar extends React.Component {
 
   }
 
+
+
+
+
   generateCodeAndSaveFile = async(output) => {
     await this.buildStateCode();
     output();
@@ -87,33 +92,95 @@ class Sidebar extends React.Component {
 
   }
 
+  enterNewChartName = () => {
+    this.props.changeChartName(this.state.localChart);
+    this.state.chartHasName = true;
+  }
+
+  handleChangeLocalChartName = (event) => {
+    this.state.localChart = event.target.value;
+  }
+
+  checkChartAndSave = () => {
+    if(this.props.chartName === ''){
+      this.state.chartHasName = false;
+      this.forceUpdate();
+      return;
+    }
+    fetch('http://127.0.0.1:8000/users/save_chart/', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        "email": this.props.email,
+        "password": this.props.password,
+        "chart" : {
+          "name": this.props.chartName,
+          "drawing": this.state.images,
+        },
+      })
+    })
+  }
+
   render() {
-    return (
-      <div className="fullWidth">
-        <div className={cx('container')}>
-         <div className={cx('body')}>
+    var pageView = this.state.chartHasName;
+    if(pageView) {
+      return (
+        <div className="fullWidth">
+          <div className={cx('container')}>
+           <div className={cx('body')}>
 
-           <ResizePanel direction="e">
-             <div className={cx('RightSidebar', 'panel')}>
-               <div>
-               <button class="btn btn-success" style={{float:"left", margin:"5px 0px 5px 10px"}}>
-                 Save
-               </button>
-               <button class="btn btn-success" style={{float:"left", margin:"5px 0px 5px 10px"}} onClick={this.generateClicked}>
-                 Generate Code
-               </button>
-               </div>
-               {this.state.differentLayers.map((img, i) => {
-               return (<div> {img} </div>);
-               })}
+             <ResizePanel direction="e">
+               <div className={cx('RightSidebar', 'panel')}>
+                 <div>
+                 <button class="btn btn-success" style={{float:"left", margin:"5px 0px 5px 10px"}} onClick={this.checkChartAndSave}>
+                   Save
+                 </button>
+                 <button class="btn btn-success" style={{float:"left", margin:"5px 0px 5px 10px"}} onClick={this.generateClicked}>
+                   Generate Code
+                 </button>
+                 </div>
+                 {this.state.differentLayers.map((img, i) => {
+                 return (<div> {img} </div>);
+                 })}
 
-              </div>
-           </ResizePanel>
-                <div className={cx('content', 'panel')}> <Canvas images={this.state.images} setImages = {this.setImages} imgSrc={this.state.imgSrc}/> </div>
+                </div>
+             </ResizePanel>
+                  <div className={cx('content', 'panel')}> <Canvas images={this.state.images} setImages = {this.setImages} imgSrc={this.state.imgSrc}/> </div>
+           </div>
          </div>
        </div>
-     </div>
+      );
+    }
+    else {
+      return (
+      <div class="container">
+        <div class="d-flex justify-content-center h-100">
+          <div class="card">
+            <div class="card-header">
+              <h3>Chart Name</h3>
+            </div>
+            <div class="card-body">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Chart Name" onChange={this.handleChangeLocalChartName} />
+              </div>
+
+
+              <div class="form-group">
+                <button class="btn float-right login_btn" onClick={this.enterNewChartName}> Enter </button>
+              </div>
+
+                <label> enter new Chart Name or an old one to replace the chart with the same name save again after entering a new valid name</label>
+            </div>
+          </div>
+        </div>
+      </div>
     );
+    }
   }
 }
 

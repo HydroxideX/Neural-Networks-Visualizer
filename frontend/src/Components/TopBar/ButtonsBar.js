@@ -18,6 +18,8 @@ class ButtonsBar extends React.Component {
   }
 
   render() {
+    var loggedin = this.props.loggedin ? 'collapse navbar-collapse' : 'nothing';
+    var loggedout = this.props.loggedin ? 'nothing' : 'collapse navbar-collapse';
     return (
       <React.Fragment>
 
@@ -26,7 +28,7 @@ class ButtonsBar extends React.Component {
           <button class="navbar-toggler navbar-toggler-right custom-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon "></span>
           </button>
-          <div class="collapse navbar-collapse " id="collapsibleNavbar">
+          <div class={loggedout} id="collapsibleNavbar">
 
             <ul class="navbar-nav ml-auto ">
               <li class="nav-item">
@@ -34,6 +36,17 @@ class ButtonsBar extends React.Component {
               </li>
               <li class="nav-item">
                 <Link to="/register">  <Register /> </Link>
+              </li>
+            </ul>
+          </div>
+          <div class={loggedin}  id="collapsibleNavbar">
+
+            <ul class="navbar-nav ml-auto ">
+              <li class="nav-item">
+                <Link to="/register">  <Profile username={this.props.username}/> </Link>
+              </li>
+              <li class="nav-item">
+                <Link to="/login">  <Logout /> </Link>
               </li>
             </ul>
           </div>

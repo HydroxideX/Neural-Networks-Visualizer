@@ -9,9 +9,7 @@ class Logout extends React.Component {
 
   render() {
     return (
-      <button style = {{fontSize: "80%" }}>
-        Logout
-      </button>
+      <button type="button" class="btn btn-primary">Logout</button>
     );
   }
 }

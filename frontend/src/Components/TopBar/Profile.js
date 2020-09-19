@@ -9,9 +9,7 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <button style = {{fontSize: "80%" }}>
-        Profile
-      </button>
+      <button type="button" class="btn btn-primary">{this.props.username}</button>
     );
   }
 }

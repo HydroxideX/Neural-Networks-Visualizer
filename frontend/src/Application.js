@@ -26,6 +26,7 @@ class Application extends React.Component {
         'logged': false,
 	  },
       remember:false,
+      chartName : '',
     }
     this.changeUsername = this.changeUsername.bind(this);
     this.changeEmail = this.changeEmail.bind(this);
@@ -41,7 +42,11 @@ class Application extends React.Component {
   	newCredential.email = localStorage.getItem('email');
     newCredential.username = localStorage.getItem('username');
     newCredential.password = localStorage.getItem('password');
-    newCredential.logged = localStorage.getItem('logged');
+    var logged = false;
+    if(localStorage.getItem('logged')==="true" ) {
+      logged = true;
+    }
+    newCredential.logged = logged;
     this.setState({
       credential: newCredential,
     });
@@ -49,6 +54,7 @@ class Application extends React.Component {
       remember: localStorage.getItem('remember'),
     })
   }
+
 
   storeData = ()=> {
      if (typeof(Storage) !== "undefined") {
@@ -68,6 +74,12 @@ class Application extends React.Component {
        localStorage.setItem('logged',false);
        localStorage.setItem('remember',false);
     }
+  }
+
+  changeChartName = (val) => {
+    this.setState({
+      chartName : val
+    })
   }
 
   changeEmail = (val) => {
@@ -130,12 +142,12 @@ class Application extends React.Component {
     return (
       <React.Fragment>
         <BrowserRouter>
-            <ButtonsBar username = {this.state.username} password = {this.state.password} loggedin = {this.state.loggedin} />
+            <ButtonsBar username = {this.state.credential.username} password = {this.state.credential.password} loggedin = {this.state.credential.logged} />
               <Switch>
                <Route path="/login">  <LoginPage loggingIn = {this.loggingIn}/> </Route>
                <Route path="/register"> <RegisterPage />  </Route>
                <Route path="/verify" > <VerifyPage /> </Route>
-               <Route path="/"> <Sidebar /> </Route>
+               <Route path="/"> <Sidebar email={this.state.credential.email} password ={this.state.credential.password} changeChartName = {this.changeChartName} chartName = {this.state.chartName}/> </Route>
                <Route path="/myCharts"> <UserCharts credential={this.state.credential}/> </Route>
               </Switch>
         </BrowserRouter>
