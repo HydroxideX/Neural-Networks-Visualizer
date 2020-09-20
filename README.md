@@ -26,7 +26,7 @@ This project is public, Feel free to create pull requests.
 ## Screenshots ##
 
 ### Home Page
-![picture alt](https://github.com/HydroxideX/Neural-Networks-Visualizer/blob/master/screenshots/screenshot 8.png)
+![picture alt](https://github.com/HydroxideX/Neural-Networks-Visualizer/blob/master/screenshots/screenshot_8.png)
 
 
 ### Creating an Account
