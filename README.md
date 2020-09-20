@@ -18,7 +18,11 @@
 -   Python code generation for layers.
 
 ## Supported Layer Types
-### Dense layer, Convolutional Layer and Pooling layer.
+-   Dense Layer.
+
+-   Convolutional Layer.
+
+-   Pooling Layer.
 
 ## Contribution Guidelines ##
 This project is public, Feel free to create pull requests.
