@@ -58,14 +58,11 @@ class LoginPage extends React.Component {
         "password": this.state.password,
       })
     },
-      console.log("data sent")
     ).then(response => response.json(),
-      console.log("response came")
     ).then(data =>
       this.setState({
         returnValue: data
       },
-        console.log("setState completed", this.state)
       )
     )
     output();
