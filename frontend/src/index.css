@@ -9,10 +9,18 @@ background-repeat: no-repeat;
 font-family: 'Numans', sans-serif;
 }
 
+a {
+    color: white;
+}
+
 .container{
 align-content: center;
 }
 
+.top{
+  margin-top: 5%;
+  margin-left: 2%;
+}
 
 
 .btn-primary{
@@ -45,6 +53,14 @@ color: white;
 position: absolute;
 right: 20px;
 }
+
+.btn-primary-outline {
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+
+}
+
 
 .input-group-prepend span{
 width: 50px;

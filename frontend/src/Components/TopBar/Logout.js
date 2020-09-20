@@ -7,9 +7,10 @@ class Logout extends React.Component {
     super(props);
   }
 
+
   render() {
     return (
-      <button type="button" class="btn btn-primary">Logout</button>
+      <button type="button" class="btn btn-primary" onClick={this.props.clearData} >Logout</button>
     );
   }
 }

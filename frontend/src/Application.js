@@ -25,7 +25,6 @@ class Application extends React.Component {
         'password': "",
         'logged': false,
 	  },
-      remember:false,
       chartName : '',
     }
     this.changeUsername = this.changeUsername.bind(this);
@@ -34,51 +33,21 @@ class Application extends React.Component {
     this.changeLogged = this.changeLogged.bind(this);
   }
 
-  componentDidMount(){
-    this.setState({
-      remember:false,
-    })
-    let newCredential =  { ...this.state.credential};
-  	newCredential.email = localStorage.getItem('email');
-    newCredential.username = localStorage.getItem('username');
-    newCredential.password = localStorage.getItem('password');
-    var logged = false;
-    if(localStorage.getItem('logged')==="true" ) {
-      logged = true;
-    }
-    newCredential.logged = logged;
-    this.setState({
-      credential: newCredential,
-    });
-    this.setState({
-      remember: localStorage.getItem('remember'),
-    })
-  }
-
-
-  storeData = ()=> {
-     if (typeof(Storage) !== "undefined") {
-        localStorage.setItem('username',this.state.credential.username);
-        localStorage.setItem('email',this.state.credential.email);
-        localStorage.setItem('password',this.state.credential.password);
-        localStorage.setItem('logged',this.state.credential.logged);
-        localStorage.setItem('remember',this.state.remember);
-     }
-  }
-
-  clearData = () => {
-    if (typeof(Storage) !== "undefined") {
-       localStorage.setItem('username','');
-       localStorage.setItem('email','');
-       localStorage.setItem('password','');
-       localStorage.setItem('logged',false);
-       localStorage.setItem('remember',false);
-    }
-  }
-
   changeChartName = (val) => {
     this.setState({
       chartName : val
+    })
+  }
+
+  clearData = async() => {
+    let newCredential = {
+      'email': "",
+      'username': "",
+      'password': "",
+      'logged': false,
+    }
+    this.setState({
+      credential: newCredential,
     })
   }
 
@@ -96,11 +65,6 @@ class Application extends React.Component {
     this.setState({
       credential: newCredential,
     });
-    if(this.state.remember === true){
-      this.storeData();
-    } else {
-      this.clearData();
-    }
   }
 
 
@@ -121,18 +85,12 @@ class Application extends React.Component {
     });
   }
 
-  changeRemember = (val) => {
-    this.setState({
-      remember: val
-    })
-  }
 
   loggingIn = {
         'changeEmail': this.changeEmail,
         'changeUsername': this.changeUsername,
         'changePassword': this.changePassword,
         'changeLogged': this.changeLogged,
-        'changeRemember': this.changeRemember,
   };
 
 
@@ -142,14 +100,14 @@ class Application extends React.Component {
     return (
       <React.Fragment>
         <BrowserRouter>
-            <ButtonsBar username = {this.state.credential.username} password = {this.state.credential.password} loggedin = {this.state.credential.logged} />
+            <ButtonsBar username = {this.state.credential.username} password = {this.state.credential.password} loggedin = {this.state.credential.logged} clearData={this.clearData}/>
               <Switch>
                <Route path="/login">  <LoginPage loggingIn = {this.loggingIn}/> </Route>
                <Route path="/register"> <RegisterPage />  </Route>
                <Route path="/verify" > <VerifyPage /> </Route>
-               <Route path="/"> <Sidebar email={this.state.credential.email} password ={this.state.credential.password} changeChartName = {this.changeChartName} chartName = {this.state.chartName}/> </Route>
-               <Route path="/myCharts"> <UserCharts credential={this.state.credential}/> </Route>
-              </Switch>
+               <Route path="/myCharts"> <UserCharts credential={this.state.credential} changeChartName={this.changeChartName}/> </Route>
+                <Route path="/"> <Sidebar email={this.state.credential.email} password ={this.state.credential.password} changeChartName = {this.changeChartName} chartName = {this.state.chartName}/> </Route>
+            </Switch>
         </BrowserRouter>
       </React.Fragment>
     );

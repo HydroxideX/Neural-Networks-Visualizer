@@ -98,17 +98,19 @@ def logout_view(request):
 
 
 @api_view(['GET'])
-def get_user_charts_view(request):
-    user = get_user(request)
+def get_user_charts_view(request, email):
+    new_email = email.lower()
+    user = User.objects.filter(email=new_email)
     curr = user.first()
-    return curr.drawings
+    return Response(curr.drawings)
 
 
 @api_view(['GET'])
-def get_chart_view(request):
-    user = get_user(request)
+def get_chart_view(request, email, chart):
+    new_email = email.lower()
+    user = User.objects.filter(email=new_email)
     curr = user.first()
-    return curr.drawings[request.data["chart_name"]]
+    return Response(curr.drawings[chart])
 
 
 @api_view(['POST'])

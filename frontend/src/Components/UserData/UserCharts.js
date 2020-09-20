@@ -8,69 +8,47 @@ class UserCharts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      link:"",
-      ChartsNames: [
-
-      ],
+      Redirect : '',
+      output: {},
     }
+    this.changeName = this.changeName.bind(this);
   }
 
   componentDidMount(){
-    //redirect to login if user isnt signed in otherwise get data
-  }
-
-
-  getOutputOrRedirect = () => {
-    if (this.state.returnValue === "false") {
+    let link ='http://127.0.0.1:8000/users/get_charts/'+ this.props.credential.email
+    fetch(link)
+    .then(response => response.json())
+    .then(data=>
       this.setState({
-        error: "Incorrect Data Entered"
+        output: data
       })
-    } else {
-      this.setState({
-        error: "Log in Complete!",
-        redirect: "/"
-      });
-      this.props.loggingIn.changeLogged(true);
-      this.props.loggingIn.changeUsername(this.state.returnValue);
-    }
+    );
   }
 
+  changeName = (val) => {
+    this.props.changeChartName(val);
+    this.state.Redirect = '/';
+    this.forceUpdate();
 
-  sendData = async (output) => {
-    await fetch('http://127.0.0.1:8000/users/getData/', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        "email": this.props.credential.email,
-        "password": this.props.credential.password,
-      })
-    },
-      console.log("data sent")
-    ).then(response => response.json(),
-      console.log("response came")
-    ).then(data =>
-      this.setState({
-        returnValue: data
-      },
-        console.log("setState completed", this.state)
-      )
-    )
-    output();
-  }
-
-
-  signIn = () => {
-    this.sendData(this.getOutputOrRedirect);
   }
 
   render() {
-    return (
-      <React.Fragment>
+    if (this.state.Redirect) {
+      return <Redirect to={this.state.Redirect} />
+    }
+    else {
+      var self = this;
+      return (
+        <div className = "top">
+          {
 
-      </React.Fragment>
-    );
+            Object.keys(this.state.output).map(function(keyName, keyIndex) {
+                return <div><button key={keyIndex} className="btn btn-primary-outline" onClick={() =>self.changeName(keyName)}> {keyName} </button></div>
+            })
+          }
+        </div>
+      );
+    }
   }
 }
 

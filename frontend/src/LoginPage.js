@@ -8,11 +8,9 @@ class LoginPage extends React.Component {
     super(props);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.handleChangeRemember = this.handleChangeRemember.bind(this);
     this.state = {
       email: "",
       password: "",
-      rememberme: false,
       returnValue: "",
       error: "",
       redirect: ""
@@ -29,10 +27,7 @@ class LoginPage extends React.Component {
     this.props.loggingIn.changePassword(event.target.value);
   }
 
-  handleChangeRemember(event) {
-    this.setState({ rememberme: event.target.checked });
-    this.props.loggingIn.changeRemember(event.target.checked);
-  }
+
 
 
 
@@ -107,9 +102,6 @@ class LoginPage extends React.Component {
                   </div>
                   <input type="password" class="form-control" placeholder="Password" onChange={this.handleChangePassword} />
                 </div>
-                <div class="row align-items-center remember">
-                  <input type="checkbox" onChange={this.handleChangeRemember} />Remember Me
-      					</div>
                 <div class="form-group">
                   <button class="btn float-right login_btn" onClick={this.signIn}> Sign in </button>
                 </div>

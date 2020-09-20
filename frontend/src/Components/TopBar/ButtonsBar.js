@@ -15,6 +15,12 @@ class ButtonsBar extends React.Component {
 
   constructor(props) {
     super(props);
+    this.clearLocal = this.clearLocal.bind(this);
+  }
+
+  clearLocal= async () => {
+    await this.props.clearData();
+    this.forceUpdate();
   }
 
   render() {
@@ -43,10 +49,10 @@ class ButtonsBar extends React.Component {
 
             <ul class="navbar-nav ml-auto ">
               <li class="nav-item">
-                <Link to="/register">  <Profile username={this.props.username}/> </Link>
+                <Link to="/myCharts">  <Profile username={this.props.username}/> </Link>
               </li>
               <li class="nav-item">
-                <Link to="/login">  <Logout /> </Link>
+                <Link to="/">  <Logout clearData={this.clearLocal}/> </Link>
               </li>
             </ul>
           </div>

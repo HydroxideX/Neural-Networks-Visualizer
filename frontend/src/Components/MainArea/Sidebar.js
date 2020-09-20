@@ -28,6 +28,19 @@ class Sidebar extends React.Component {
     };
   }
 
+  componentDidMount(){
+    if(this.props.chartName !== '') {
+      let link ='http://127.0.0.1:8000/users/get_chart/'+ this.props.email+'/'+this.props.chartName
+      fetch(link)
+      .then(response => response.json())
+      .then(data=>
+        this.setState({
+          images: data
+        })
+      );
+    }
+  }
+
   setImages = (val) => {
     this.setState({
       images:val,
