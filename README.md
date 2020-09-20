@@ -30,8 +30,8 @@ This project is public, Feel free to create pull requests.
 
 
 ### Creating an Account
-![picture alt](https://github.com/HydroxideX/Neural-Networks-Visualizer/blob/master/screenshots/screenshot_1.PNG)
-![picture alt](https://github.com/HydroxideX/Neural-Networks-Visualizer/blob/master/screenshots/screenshot_2.PNG)
+![picture alt](https://github.com/HydroxideX/Neural-Networks-Visualizer/blob/master/screenshots/screenshot_1.png)
+![picture alt](https://github.com/HydroxideX/Neural-Networks-Visualizer/blob/master/screenshots/screenshot_2.png)
 ![picture alt](https://github.com/HydroxideX/Neural-Networks-Visualizer/blob/master/screenshots/screenshot_3.png)
 
 ### Creating Chart
