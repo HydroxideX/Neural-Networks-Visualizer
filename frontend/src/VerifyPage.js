@@ -20,7 +20,7 @@ class VerifyPage extends React.Component {
     handleChangeEmail(event) {
         this.setState({ enteredCode: event.target.value });
       }
-    
+
       signin = () => {
 
         if (this.state.enteredCode === "") {
@@ -31,7 +31,7 @@ class VerifyPage extends React.Component {
       }
 
       sendData = async (output) => {
-        await fetch('http://127.0.0.1:8000/users/verify_email/', {
+        await fetch('http://0.0.0.0:8000/users/verify_email/', {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
@@ -96,4 +96,3 @@ class VerifyPage extends React.Component {
 }
 
 export default VerifyPage;
-
