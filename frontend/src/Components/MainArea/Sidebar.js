@@ -120,7 +120,7 @@ class Sidebar extends React.Component {
       this.forceUpdate();
       return;
     }
-    fetch('http://127.0.0.1:8000/users/save_chart/', {
+    fetch('http://18.219.98.125:8000/users/save_chart/', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

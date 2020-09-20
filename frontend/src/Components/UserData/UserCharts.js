@@ -15,7 +15,7 @@ class UserCharts extends React.Component {
   }
 
   componentDidMount(){
-    let link ='http://127.0.0.1:8000/users/get_charts/'+ this.props.credential.email
+    let link ='http://18.219.98.125:8000/users/get_charts/'+ this.props.credential.email
     fetch(link)
     .then(response => response.json())
     .then(data=>
