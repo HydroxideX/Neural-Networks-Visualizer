@@ -42,5 +42,5 @@ This project is public, Feel free to create pull requests.
 
 ### Accessing User Charts
 ![picture alt](https://github.com/HydroxideX/Neural-Networks-Visualizer/blob/master/screenshots/screenshot_6.png)
-![picture alt](https://github.com/HydroxideX/Neural-Networks-Visualizer/blob/master/screenshots/screenshot_8.png)
+![picture alt](https://github.com/HydroxideX/Neural-Networks-Visualizer/blob/master/screenshots/screenshot_4.png)
 
