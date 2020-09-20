@@ -62,7 +62,7 @@ class RegisterPage extends React.Component {
 
 
   sendData = async (output) => {
-    await fetch('http://0.0.0.0:8000/users/register/', {
+    await fetch('http://127.0.0.1:8000/users/register/', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
