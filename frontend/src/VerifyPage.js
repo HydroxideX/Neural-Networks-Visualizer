@@ -31,7 +31,7 @@ class VerifyPage extends React.Component {
       }
 
       sendData = async (output) => {
-        await fetch('http://18.219.98.125/users/verify_email/', {
+        await fetch('http://18.219.98.125:8000/users/verify_email/', {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
