@@ -12,7 +12,6 @@
 /backend/backend/__pycache__
 /backend/charts/__pycache__
 # production
-/frontend/build
 /frontend/node_modules
 
 
