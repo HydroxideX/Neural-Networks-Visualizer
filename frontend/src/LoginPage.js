@@ -36,6 +36,10 @@ class LoginPage extends React.Component {
       this.setState({
         error: "Incorrect Data Entered"
       })
+    } else if(this.state.returnValue === "not verified"){
+      this.setState({
+        redirect: "/verify"
+      });
     } else {
       this.setState({
         error: "Log in Complete!",

@@ -79,6 +79,8 @@ def login_view(request):
     if len(user) != 0:
         curr = user.first()
         curr.is_active = True
+        if curr.is_verified == False :
+            return Response("not verified");
         curr.save()
         return Response(user.first().username)
     else:
